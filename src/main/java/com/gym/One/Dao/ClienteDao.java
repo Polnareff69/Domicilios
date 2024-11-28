@@ -6,4 +6,5 @@ import java.util.UUID;
 
 @Repository
 public interface ClienteDao extends JpaRepository<Cliente, UUID>  {
+
 }
