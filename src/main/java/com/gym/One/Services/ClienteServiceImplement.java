@@ -14,8 +14,8 @@ public class ClienteServiceImplement implements ClienteService{
     private com.gym.One.Dao.ClienteDao ClienteDao;
     @Override
     @Transactional
-    public Cliente findById(UUID id){
-        return ClienteDao.findById(id).orElse(null);
-    }
     public List<Cliente> ObtenerTodosLosClientes() { return ClienteDao.findAll(); }
+    @Transactional
+    @Override
+    public Cliente getReferenceById(UUID id){ return ClienteDao.getReferenceById(id); }
 }
