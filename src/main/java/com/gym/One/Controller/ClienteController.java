@@ -1,18 +1,15 @@
 package com.gym.One.Controller;
 import com.gym.One.Entity.Cliente;
-import com.gym.One.Services.PedidoService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import com.gym.One.DTO.ClienteDTO;
+import java.util.*;
 
 
 @RestController
@@ -21,11 +18,25 @@ import java.util.UUID;
 public class ClienteController {
     @Autowired
     private com.gym.One.Services.ClienteService ClienteService;
-    @GetMapping(value="/cliente/{id}")
-    public ResponseEntity<Object> getById(@PathVariable UUID id){
+    @GetMapping(value="/cliente/")
+    public ResponseEntity<Object> ObtenerTodosLosClientes(){
         try {
-            Cliente data = ClienteService.findById(id);
+            List<Cliente> data = ClienteService.ObtenerTodosLosClientes();
             return new ResponseEntity<Object>(data, HttpStatus.OK);
+        }
+        catch (Exception e){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("message", e.getMessage());
+            return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @Transactional
+    @GetMapping(value="/cliente/{id}")
+    public ResponseEntity<Object> GetReferenceById(@PathVariable UUID id){
+        try{
+            Cliente data = ClienteService.getReferenceById(id);
+            ClienteDTO ClienteDTO = new ClienteDTO(data.getId(), data.getNombre(), data.getDireccion());
+            return new ResponseEntity<Object>(ClienteDTO, HttpStatus.OK);
         }
         catch (Exception e){
             Map<String, Object> map = new HashMap<String, Object>();
