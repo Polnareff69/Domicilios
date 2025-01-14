@@ -25,3 +25,17 @@ replay_pid*
 
 
 **/application.properties
+
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# Archivos de construcción
+target/
+
+# Otros archivos temporales generados
+.DS_Store
+Thumbs.db
+
