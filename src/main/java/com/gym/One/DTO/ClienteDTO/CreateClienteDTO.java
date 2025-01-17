@@ -1,12 +1,12 @@
-package com.gym.One.DTO;
+package com.gym.One.DTO.ClienteDTO;
 import java.util.UUID;
 
-public class ClienteDTO {
+public class CreateClienteDTO {
     private UUID id;
     private String nombre;
     private String direccion;
 
-    public ClienteDTO(UUID id, String nombre, String direccion) {
+    public CreateClienteDTO(UUID id, String nombre, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;

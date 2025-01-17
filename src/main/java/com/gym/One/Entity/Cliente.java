@@ -1,18 +1,20 @@
 package com.gym.One.Entity;
 import java.io.Serializable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 //Indica al sistema que esta clase es una tabla de base de datos
 @Entity
 @Table(name="Clientes")
 
-public class Cliente implements Serializable {
+public class Cliente implements Serializable{
     private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "clienteid")
@@ -81,4 +83,17 @@ public class Cliente implements Serializable {
     public void setCelular(long celular) {
         Celular = celular;
     }
+
+    @Column(name = "Rol")
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
 }

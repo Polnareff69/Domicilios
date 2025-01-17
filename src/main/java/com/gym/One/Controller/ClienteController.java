@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gym.One.DTO.ClienteDTO;
+import com.gym.One.DTO.ClienteDTO.CreateClienteDTO;
 import java.util.*;
 
 
@@ -35,8 +35,8 @@ public class ClienteController {
     public ResponseEntity<Object> GetReferenceById(@PathVariable UUID id){
         try{
             Cliente data = ClienteService.getReferenceById(id);
-            ClienteDTO ClienteDTO = new ClienteDTO(data.getId(), data.getNombre(), data.getDireccion());
-            return new ResponseEntity<Object>(ClienteDTO, HttpStatus.OK);
+            CreateClienteDTO CreateClienteDTO = new CreateClienteDTO(data.getId(), data.getNombre(), data.getDireccion());
+            return new ResponseEntity<Object>(CreateClienteDTO, HttpStatus.OK);
         }
         catch (Exception e){
             Map<String, Object> map = new HashMap<String, Object>();
