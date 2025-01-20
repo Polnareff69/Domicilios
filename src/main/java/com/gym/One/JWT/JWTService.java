@@ -8,8 +8,10 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.security.Key;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +20,11 @@ import java.util.Map;
 @Service
 public class JWTService {
 
-    private final static String SECRET_KEY="ELGueestocomoaquelloelcoronad069420´´";
+    // Genera la clave secreta para HMAC-SHA-256
+    SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+    // Convierte la clave en Base64 para representarla como un String
+    String SECRET_KEY = Base64.getEncoder().encodeToString(key.getEncoded());
 
     public String getToken(UserDetails User){
         return getToken(new HashMap<>(), User);

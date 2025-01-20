@@ -11,7 +11,7 @@ public class RegisterRequest {
     }
 
     public void setCorreo(String correo) {
-        Correo = correo;
+        this.Correo = correo;
     }
 
     public String getPassword() {

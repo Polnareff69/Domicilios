@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface UsuarioDao extends JpaRepository<Usuario, UUID> {
     Optional<Usuario> findById(UUID Id);
+    Optional<Usuario> findByNombre(String nombre);
 }
